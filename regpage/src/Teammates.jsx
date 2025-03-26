@@ -62,7 +62,7 @@ function Teammates() {
                       className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                     >
                       <option value="">Select Branch</option>
-                      <option value="CSI">CSI</option>
+                      <option value="CSI">CSE</option>
                       <option value="CE">CE</option>
                       <option value="EXTC">EXTC</option>
                     </select>

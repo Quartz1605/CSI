@@ -94,10 +94,20 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-purple-900 flex items-center justify-center p-6">
+    
+    <div 
+      className="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-8" 
+      style={{
+        backgroundImage: "url('https://i.pinimg.com/736x/ab/b8/90/abb8903ab4daab208e95a3fd4807d0ef.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
+    >
       <div className="w-full max-w-4xl bg-gray-800/60 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border-2 border-transparent transition duration-300 hover:border-purple-500 hover:shadow-[0_0_20px_6px_rgba(128,90,213,0.5)]">
-        <div className="px-8 py-10">
-          <div className="mb-8 flex items-center justify-center">
+        <div className="px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
+          {/* Responsive Banner Image */}
+          <div className="mb-6 sm:mb-8 flex items-center justify-center">
             <img
               src="https://i.ibb.co/6SKwHvH/SEHACKKKKK.png"
               alt="Hackathon Banner"
@@ -105,19 +115,21 @@ function App() {
             />
           </div>
 
-          <div className="text-center mb-10">
-            <h2 className="text-transparent bg-clip-text font-bold text-4xl bg-gradient-to-r from-pink-500 to-purple-600">
+          {/* Responsive Title */}
+          <div className="text-center mb-6 sm:mb-8 md:mb-10">
+            <h2 className="text-transparent bg-clip-text font-bold text-2xl sm:text-3xl md:text-4xl bg-gradient-to-r from-pink-500 to-purple-600">
               Team Leader Registration
             </h2>
-            <p className="text-gray-400 mt-2">
+            <p className="text-gray-400 mt-2 text-sm sm:text-base">
               Complete your hackathon registration details
             </p>
           </div>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-6">
+          <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
+            {/* Responsive Grid for Form Fields */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div>
-                <label className="block text-pink-300 mb-2 text-sm">
+                <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
                   Full Name
                 </label>
                 <input
@@ -126,12 +138,13 @@ function App() {
                   value={formData.leader.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                   placeholder="Enter your full name"
                 />
               </div>
               <div>
-                <label className="block text-pink-300 mb-2 text-sm">
+                <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
                   Team Name
                 </label>
                 <input
@@ -140,27 +153,29 @@ function App() {
                   value={formData.leader.teamName}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                   placeholder="Enter your team name"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div>
-                <label className="block text-pink-300 mb-2 text-sm">UID</label>
+                <label className="block text-pink-300 mb-2 text-xs sm:text-sm">UID</label>
                 <input
                   type="text"
                   name="uid"
                   value={formData.leader.uid}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                   placeholder="Enter your UID"
                 />
               </div>
               <div>
-                <label className="block text-pink-300 mb-2 text-sm">
+                <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
                   Branch
                 </label>
                 <select
@@ -168,7 +183,8 @@ function App() {
                   value={formData.leader.branch}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                 >
                   <option value="">Select Branch</option>
                   <option value="CSE">CSE</option>
@@ -178,9 +194,9 @@ function App() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div>
-                <label className="block text-pink-300 mb-2 text-sm">
+                <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
                   Food Preference
                 </label>
                 <select
@@ -188,7 +204,8 @@ function App() {
                   value={formData.leader.foodPreference}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                 >
                   <option value="">Select Food Preference</option>
                   <option value="Veg">Veg</option>
@@ -196,15 +213,16 @@ function App() {
                 </select>
               </div>
               <div>
-                <label className="block text-pink-300 mb-2 text-sm">
-                  Hackathon T-Shirt{" "}
+                <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
+                  Hackathon T-Shirt
                 </label>
                 <select
                   name="tshirt"
                   value={formData.leader.tshirt}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                 >
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
@@ -212,10 +230,11 @@ function App() {
               </div>
             </div>
 
-            <div className="mt-8 flex justify-end">
+            <div className="mt-6 sm:mt-8 flex justify-end">
               <button
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-purple-700 to-pink-600 text-white rounded-xl 
+                className="w-full py-3 sm:py-4 bg-gradient-to-r from-purple-700 to-pink-600 text-white rounded-xl 
+                text-sm sm:text-base
                 hover:from-purple-800 hover:to-pink-700 transition duration-300 ease-in-out 
                 transform hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-2xl"
               >
@@ -224,7 +243,7 @@ function App() {
             </div>
           </form>
 
-          <div className="text-center mt-6 text-gray-400 text-sm">
+          <div className="text-center mt-4 sm:mt-6 text-gray-400 text-xs sm:text-sm">
             Already registered?
             <a
               href="#"
@@ -236,6 +255,8 @@ function App() {
         </div>
       </div>
     </div>
+
+    
   );
 }
 

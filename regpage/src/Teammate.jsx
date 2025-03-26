@@ -41,10 +41,19 @@ function Teammate({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-purple-900 flex items-center justify-center p-6">
+    <div 
+      className="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-8" 
+      style={{
+        backgroundImage: "url('https://i.pinimg.com/736x/6f/00/14/6f0014fc32a8a639363a5117c846322e.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
+    >
       <div className="w-full max-w-4xl bg-gray-800/60 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border-2 border-transparent transition duration-300 hover:border-purple-500 hover:shadow-[0_0_20px_6px_rgba(128,90,213,0.5)]">
-        <div className="px-8 py-10">
-          <div className="mb-8 flex items-center justify-center">
+        <div className="px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
+          {/* Responsive Banner Image */}
+          <div className="mb-6 sm:mb-8 flex items-center justify-center">
             <img
               src="https://i.ibb.co/6SKwHvH/SEHACKKKKK.png"
               alt="Hackathon Banner"
@@ -52,14 +61,15 @@ function Teammate({
             />
           </div>
 
-          <div className="text-center mb-10">
-            <h2 className="text-transparent bg-clip-text font-bold text-4xl bg-gradient-to-r from-pink-500 to-purple-600">
+          {/* Responsive Title and Team Info */}
+          <div className="text-center mb-6 sm:mb-8 md:mb-10">
+            <h2 className="text-transparent bg-clip-text font-bold text-2xl sm:text-3xl md:text-4xl bg-gradient-to-r from-pink-500 to-purple-600">
               Add Teammate
             </h2>
-            <p className="text-gray-400 mt-2">
+            <p className="text-gray-400 mt-2 text-sm sm:text-base">
               Team: {teamName} - Add your teammate details
             </p>
-            <p className="text-pink-400 mt-1">
+            <p className="text-pink-400 mt-1 text-xs sm:text-sm">
               {teammateCount > 0
                 ? `Current team: ${
                     teammateCount + 1
@@ -68,11 +78,11 @@ function Teammate({
             </p>
           </div>
 
-          {/* Only show the form if there are remaining slots */}
+          {/* Conditional Rendering for Teammate Form */}
           {remainingSlots > 0 ? (
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label className="block text-pink-300 mb-2 text-sm">
+                <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
                   Full Name
                 </label>
                 <input
@@ -81,14 +91,15 @@ function Teammate({
                   value={teammateData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                    focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                   placeholder="Enter teammate's full name"
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label className="block text-pink-300 mb-2 text-sm">
+                  <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
                     UID
                   </label>
                   <input
@@ -97,12 +108,13 @@ function Teammate({
                     value={teammateData.uid}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                    className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                      focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                     placeholder="Enter teammate's UID"
                   />
                 </div>
                 <div>
-                  <label className="block text-pink-300 mb-2 text-sm">
+                  <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
                     Branch
                   </label>
                   <select
@@ -110,7 +122,8 @@ function Teammate({
                     value={teammateData.branch}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                    className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                      focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                   >
                     <option value="">Select Branch</option>
                     <option value="CSE">CSE</option>
@@ -120,9 +133,9 @@ function Teammate({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label className="block text-pink-300 mb-2 text-sm">
+                  <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
                     Food Preference
                   </label>
                   <select
@@ -130,7 +143,8 @@ function Teammate({
                     value={teammateData.foodPreference}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                    className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                      focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                   >
                     <option value="">Select Food Preference</option>
                     <option value="Veg">Veg</option>
@@ -138,7 +152,7 @@ function Teammate({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-pink-300 mb-2 text-sm">
+                  <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
                     Hackathon T-Shirt
                   </label>
                   <select
@@ -146,7 +160,8 @@ function Teammate({
                     value={teammateData.tshirt}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
+                    className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700 border border-pink-700/30 rounded-xl text-pink-200 text-sm sm:text-base
+                      focus:outline-none focus:ring-2 focus:ring-purple-500 transition duration-300"
                   >
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -154,11 +169,12 @@ function Teammate({
                 </div>
               </div>
 
-              <div className="mt-8 flex justify-between gap-4">
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-between gap-4">
                 <button
                   type="button"
                   onClick={onBack}
-                  className="w-full py-4 bg-gradient-to-r from-gray-700 to-gray-600 text-white rounded-xl 
+                  className="w-full py-3 sm:py-4 bg-gradient-to-r from-gray-700 to-gray-600 text-white rounded-xl 
+                  text-sm sm:text-base
                   hover:from-gray-800 hover:to-gray-700 transition duration-300 ease-in-out 
                   transform hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-2xl"
                 >
@@ -166,7 +182,8 @@ function Teammate({
                 </button>
                 <button
                   type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-purple-700 to-pink-600 text-white rounded-xl 
+                  className="w-full py-3 sm:py-4 bg-gradient-to-r from-purple-700 to-pink-600 text-white rounded-xl 
+                  text-sm sm:text-base
                   hover:from-purple-800 hover:to-pink-700 transition duration-300 ease-in-out 
                   transform hover:scale-[1.02] active:scale-[0.98] shadow-xl hover:shadow-2xl"
                 >
@@ -175,24 +192,23 @@ function Teammate({
               </div>
             </form>
           ) : (
-            <div className="text-center p-6 bg-purple-900/30 rounded-xl border border-purple-500/30">
-              <h3 className="text-xl text-pink-300 font-medium">
+            <div className="text-center p-4 sm:p-6 bg-purple-900/30 rounded-xl border border-purple-500/30">
+              <h3 className="text-lg sm:text-xl text-pink-300 font-medium">
                 Maximum Team Size Reached
               </h3>
-              <p className="text-gray-300 mt-2">
+              <p className="text-gray-300 mt-2 text-sm sm:text-base">
                 You've reached the maximum team size of {maxTeamSize} members.
               </p>
             </div>
           )}
 
-          <div className="text-center mt-6">
+          <div className="text-center mt-4 sm:mt-6">
             {teammateCount > 0 && (
               <>
-                <div className="mb-4"></div>
-                <h3 className="text-lg text-pink-300 font-medium">
+                <h3 className="text-base sm:text-lg text-pink-300 font-medium">
                   Team Members: {teammateCount}
                 </h3>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-400 text-xs sm:text-sm mt-2 mb-4">
                   {teammateCount === maxTeamSize - 1
                     ? "Your team is complete!"
                     : `You can add ${remainingSlots} more teammate${
@@ -207,14 +223,15 @@ function Teammate({
               onClick={onFinalSubmit}
               className={`${
                 teammateCount > 0
-                  ? "bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+                  ? "bg-gradient-to-r from-blue-500 to-green-500 hover:from-green-700 hover:to-blue-700 hover:cursor-pointer"
                   : "bg-gray-600 hover:bg-gray-700 cursor-not-allowed"
-              } px-6 py-2 text-white rounded-xl transition duration-300 ease-in-out transform hover:scale-[1.02] active:scale-[0.98]`}
+              } px-4 sm:px-6 py-2 text-white rounded-xl transition duration-300 ease-in-out 
+              transform hover:scale-[1.02] active:scale-[0.98] text-sm sm:text-base`}
               disabled={teammateCount === 0}
             >
               {teammateCount === 0
                 ? "Add at least one teammate to continue"
-                : "Finish and Submit Team Registration"}
+                : "Finish Payment and Complete Registration"}
             </button>
           </div>
         </div>
