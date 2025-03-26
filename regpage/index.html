@@ -1,13 +1,277 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RegistrationPage</title>
+    <title>Team Registration</title>
+    <style>
+      /* Add your CSS styles here */
+      .hidden {
+        display: none;
+      }
+      .step {
+        margin-bottom: 20px;
+      }
+      .form-control {
+        margin-bottom: 10px;
+      }
+      .form-control label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .form-control input,
+      .form-control select {
+        width: 100%;
+        padding: 8px;
+      }
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <main
+      class="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50"
+    >
+      <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
+        <div class="text-center mb-6">
+          <h1 class="text-2xl font-bold text-gray-900">Team Registration</h1>
+          <p class="text-gray-600">Complete the form to register your team</p>
+        </div>
+
+        <form id="registrationForm">
+          <div id="step-1" class="step">
+            <h2>Team Leader Information</h2>
+            <div class="form-control">
+              <label for="teamName">Team Name *</label>
+              <input type="text" id="teamName" name="teamName" required />
+            </div>
+            <div class="form-control">
+              <label for="leaderName">Leader Name *</label>
+              <input type="text" id="leaderName" name="leaderName" required />
+            </div>
+            <div class="form-control">
+              <label for="leaderUID">Leader UID *</label>
+              <input type="text" id="leaderUID" name="leaderUID" required />
+            </div>
+            <div class="form-control">
+              <label for="leaderBranch">Branch *</label>
+              <input
+                type="text"
+                id="leaderBranch"
+                name="leaderBranch"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="leaderDiet">Diet Preference</label>
+              <select id="leaderDiet" name="leaderDiet">
+                <option value="Veg">Vegetarian</option>
+                <option value="Non-Veg">Non-Vegetarian</option>
+              </select>
+            </div>
+            <div class="form-control">
+              <input type="checkbox" id="leaderTShirt" name="leaderTShirt" />
+              <label for="leaderTShirt">T-Shirt Required?</label>
+            </div>
+            <div class="button-group">
+              <button type="button" onclick="nextStep()">Next</button>
+            </div>
+          </div>
+
+          <div id="step-2" class="step hidden">
+            <h2>Teammate 1 Information</h2>
+            <div class="form-control">
+              <label for="teammate-0-name">Name *</label>
+              <input
+                type="text"
+                id="teammate-0-name"
+                name="teammate-0-name"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="teammate-0-uid">UID *</label>
+              <input
+                type="text"
+                id="teammate-0-uid"
+                name="teammate-0-uid"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="teammate-0-branch">Branch *</label>
+              <input
+                type="text"
+                id="teammate-0-branch"
+                name="teammate-0-branch"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="teammate-0-diet">Diet Preference</label>
+              <select id="teammate-0-diet" name="teammate-0-diet">
+                <option value="Veg">Vegetarian</option>
+                <option value="Non-Veg">Non-Vegetarian</option>
+              </select>
+            </div>
+            <div class="form-control">
+              <input
+                type="checkbox"
+                id="teammate-0-tShirt"
+                name="teammate-0-tShirt"
+              />
+              <label for="teammate-0-tShirt">T-Shirt Required?</label>
+            </div>
+            <div class="button-group">
+              <button type="button" onclick="prevStep()">Previous</button>
+              <button type="button" onclick="nextStep()">Next</button>
+            </div>
+          </div>
+
+          <div id="step-3" class="step hidden">
+            <h2>Teammate 2 Information</h2>
+            <div class="form-control">
+              <label for="teammate-1-name">Name *</label>
+              <input
+                type="text"
+                id="teammate-1-name"
+                name="teammate-1-name"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="teammate-1-uid">UID *</label>
+              <input
+                type="text"
+                id="teammate-1-uid"
+                name="teammate-1-uid"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="teammate-1-branch">Branch *</label>
+              <input
+                type="text"
+                id="teammate-1-branch"
+                name="teammate-1-branch"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="teammate-1-diet">Diet Preference</label>
+              <select id="teammate-1-diet" name="teammate-1-diet">
+                <option value="Veg">Vegetarian</option>
+                <option value="Non-Veg">Non-Vegetarian</option>
+              </select>
+            </div>
+            <div class="form-control">
+              <input
+                type="checkbox"
+                id="teammate-1-tShirt"
+                name="teammate-1-tShirt"
+              />
+              <label for="teammate-1-tShirt">T-Shirt Required?</label>
+            </div>
+            <div class="button-group">
+              <button type="button" onclick="prevStep()">Previous</button>
+              <button type="button" onclick="nextStep()">Next</button>
+            </div>
+          </div>
+
+          <div id="step-4" class="step hidden">
+            <h2>Teammate 3 Information</h2>
+            <div class="form-control">
+              <label for="teammate-2-name">Name *</label>
+              <input
+                type="text"
+                id="teammate-2-name"
+                name="teammate-2-name"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="teammate-2-uid">UID *</label>
+              <input
+                type="text"
+                id="teammate-2-uid"
+                name="teammate-2-uid"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="teammate-2-branch">Branch *</label>
+              <input
+                type="text"
+                id="teammate-2-branch"
+                name="teammate-2-branch"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label for="teammate-2-diet">Diet Preference</label>
+              <select id="teammate-2-diet" name="teammate-2-diet">
+                <option value="Veg">Vegetarian</option>
+                <option value="Non-Veg">Non-Vegetarian</option>
+              </select>
+            </div>
+            <div class="form-control">
+              <input
+                type="checkbox"
+                id="teammate-2-tShirt"
+                name="teammate-2-tShirt"
+              />
+              <label for="teammate-2-tShirt">T-Shirt Required?</label>
+            </div>
+            <div class="button-group">
+              <button type="button" onclick="prevStep()">Previous</button>
+              <button type="button" onclick="nextStep()">Next</button>
+            </div>
+          </div>
+
+          <div id="step-5" class="step hidden">
+            <h2>Payment Information</h2>
+            <div class="form-control">
+              <input type="checkbox" id="paymentProof" name="paymentProof" />
+              <label for="paymentProof"
+                >I confirm that I have made the payment</label
+              >
+            </div>
+            <div class="button-group">
+              <button type="button" onclick="prevStep()">Previous</button>
+              <button type="submit">Submit Registration</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      let currentStep = 1;
+
+      function nextStep() {
+        document.getElementById(`step-${currentStep}`).classList.add("hidden");
+        currentStep++;
+        document
+          .getElementById(`step-${currentStep}`)
+          .classList.remove("hidden");
+      }
+
+      function prevStep() {
+        document.getElementById(`step-${currentStep}`).classList.add("hidden");
+        currentStep--;
+        document
+          .getElementById(`step-${currentStep}`)
+          .classList.remove("hidden");
+      }
+
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert("Form submitted successfully!");
+        });
+    </script>
   </body>
 </html>
