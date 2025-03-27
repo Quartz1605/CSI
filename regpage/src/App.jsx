@@ -441,25 +441,6 @@ function App() {
                   </motion.button>
                 </div>
               </form>
-
-              <motion.div
-                className="text-center mt-4 sm:mt-6 text-gray-400 text-xs sm:text-sm"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-              >
-                Already registered?
-                <motion.a
-                  href="#"
-                  className="text-pink-500 hover:text-pink-400 ml-2 inline-block"
-                  whileHover={{
-                    scale: 1.05,
-                    textShadow: "0 0 8px rgb(236 72 153 / 0.6)",
-                  }}
-                >
-                  Login here
-                </motion.a>
-              </motion.div>
             </div>
           </motion.div>
         </motion.div>
