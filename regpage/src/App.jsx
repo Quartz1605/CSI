@@ -15,6 +15,8 @@ function App() {
       branch: "",
       foodPreference: "",
       tshirt: "",
+      email: "", // Added email field
+      phone: "", // Added phone field
     },
     teammates: [],
     // Add a new array for storing name and UID only
@@ -124,6 +126,8 @@ function App() {
               branch: "",
               foodPreference: "",
               tshirt: "",
+              email: "",
+              phone: "",
             },
             teammates: [],
             teammateNamesUids: [],
@@ -349,7 +353,8 @@ function App() {
                     >
                       <option value="">Select Branch</option>
                       <option value="CSE">CSE</option>
-                      <option value="CE">CE</option>
+                      <option value="COMPS AB">COMPS AB</option>
+                      <option value="COMPS CD">COMPS CD</option>
                       <option value="EXTC">EXTC</option>
                     </select>
                   </motion.div>
@@ -409,6 +414,61 @@ function App() {
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
+                  </motion.div>
+                </div>
+
+                {/* New row for email and phone fields */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className={
+                      focusedField === "email"
+                        ? "ring-2 ring-purple-500/50 rounded-xl p-1"
+                        : "p-1"
+                    }
+                  >
+                    <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.leader.email}
+                      onChange={handleChange}
+                      onFocus={() => handleFocus("email")}
+                      onBlur={handleBlur}
+                      required
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700/90 border border-pink-700/40 rounded-xl text-pink-200 text-sm sm:text-base
+                        focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                      placeholder="Enter your email address"
+                    />
+                  </motion.div>
+
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className={
+                      focusedField === "phone"
+                        ? "ring-2 ring-purple-500/50 rounded-xl p-1"
+                        : "p-1"
+                    }
+                  >
+                    <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.leader.phone}
+                      onChange={handleChange}
+                      onFocus={() => handleFocus("phone")}
+                      onBlur={handleBlur}
+                      required
+                      className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700/90 border border-pink-700/40 rounded-xl text-pink-200 text-sm sm:text-base
+                        focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                      placeholder="Enter your phone number"
+                    />
                   </motion.div>
                 </div>
 

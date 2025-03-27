@@ -14,6 +14,7 @@ function Teammate({
   const [teammateData, setTeammateData] = useState({
     name: "",
     uid: "",
+    phoneNumber: "", // Add phone number field
     branch: "",
     foodPreference: "",
     tshirt: "",
@@ -37,6 +38,7 @@ function Teammate({
     setTeammateData({
       name: "",
       uid: "",
+      phoneNumber: "", // Reset phone number field
       branch: "",
       foodPreference: "",
       tshirt: "",
@@ -134,7 +136,7 @@ function Teammate({
 
           <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
             {/* Responsive Grid for Form Fields */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               <motion.div
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300 }}
@@ -186,6 +188,35 @@ function Teammate({
                   placeholder="Enter teammate's UID"
                 />
               </motion.div>
+
+              {/* Add Phone Number Field */}
+              <motion.div
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className={
+                  focusedField === "phoneNumber"
+                    ? "ring-2 ring-purple-500/50 rounded-xl p-1"
+                    : "p-1"
+                }
+              >
+                <label className="block text-pink-300 mb-2 text-xs sm:text-sm">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  name="phoneNumber"
+                  value={teammateData.phoneNumber}
+                  onChange={handleChange}
+                  onFocus={() => handleFocus("phoneNumber")}
+                  onBlur={handleBlur}
+                  required
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-gray-700/90 border border-pink-700/40 rounded-xl text-pink-200 text-sm sm:text-base
+                    focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
+                  placeholder="Enter teammate's phone number"
+                  pattern="[0-9]{10}"
+                  title="Please enter a valid 10-digit phone number"
+                />
+              </motion.div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
@@ -213,7 +244,8 @@ function Teammate({
                 >
                   <option value="">Select Branch</option>
                   <option value="CSE">CSE</option>
-                  <option value="CE">CE</option>
+                  <option value="COMPS AB">COMPS AB</option>
+                  <option value="COMPS CD">COMPS CD</option>
                   <option value="EXTC">EXTC</option>
                 </select>
               </motion.div>
