@@ -9,8 +9,7 @@ function Payment({
   leaderName,
   teammates = [],
 }) {
-  // Fixed fee for team registration
-  const totalAmount = 400;
+  const totalAmount = 200;
 
   return (
     <motion.div
