@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 function Payment({
@@ -9,7 +9,53 @@ function Payment({
   leaderName,
   teammates = [],
 }) {
+  const BackendAPIurl = "https://your-backend-api-url.com/payment/complete";
   const totalAmount = 200;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handlePaymentComplete = async () => {
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      // Prepare payment data to send to backend
+      const paymentData = {
+        teamName,
+        memberCount,
+        leaderName,
+        teammates,
+        amount: totalAmount,
+        paymentTime: new Date().toISOString(),
+      };
+
+      // Send payment data to backend
+      const response = await fetch(BackendAPIurl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(paymentData),
+      });
+
+      if (!response.ok) {
+        alert(`Payment submission failed with status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Payment recorded successfully:", data);
+
+      // Call the original onComplete callback
+      onComplete(data);
+    } catch (err) {
+      console.error("Error submitting payment:", err);
+      setError(
+        "Failed to record payment. Please try again or contact support."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <motion.div
@@ -152,6 +198,7 @@ function Payment({
               hover:bg-gray-600 transition duration-300 ease-in-out flex items-center justify-center"
               whileHover={{ scale: 1.02, backgroundColor: "rgb(75, 85, 99)" }}
               whileTap={{ scale: 0.98 }}
+              disabled={isSubmitting}
             >
               <svg
                 className="mr-2 w-5 h-5"
@@ -171,32 +218,71 @@ function Payment({
 
             <motion.button
               type="button"
-              onClick={onComplete}
+              onClick={handlePaymentComplete}
               className="py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-xl 
               text-sm sm:text-base relative overflow-hidden group"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              disabled={isSubmitting}
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-green-500 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
               <span className="relative flex items-center justify-center">
-                I've Completed Payment
-                <svg
-                  className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+                {isSubmitting ? (
+                  <>
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    I've Completed Payment
+                    <svg
+                      className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </>
+                )}
               </span>
             </motion.button>
           </div>
+
+          {error && (
+            <motion.div
+              className="mt-4 text-center text-red-400 bg-red-900/30 py-2 px-4 rounded-lg"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              {error}
+            </motion.div>
+          )}
 
           <motion.div
             className="text-center mt-8 text-gray-400 text-xs sm:text-sm"

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 function Teammate({
   onSubmit,
   teamName,
-  leaderName, // Add leaderName prop
+  leaderName,
   onBack,
   teammateCount,
   maxTeamSize,
@@ -14,7 +14,7 @@ function Teammate({
   const [teammateData, setTeammateData] = useState({
     name: "",
     uid: "",
-    phoneNumber: "", // Add phone number field
+    phoneNumber: "",
     branch: "",
     foodPreference: "",
     tshirt: "",
